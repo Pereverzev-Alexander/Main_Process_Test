@@ -2,78 +2,78 @@ package entites;
 
 public class Info_request {
 	// Дата заявки
-	private long IncomeDate;
+	private long incomeDate;
 	// ФИО клиента
-	private String FullNameClient;
+	private String fullNameClient;
 	// Адрес клиента
-	private String Address;
+	private String address;
 	// Планируемая дата выезда мастера
-	private long ServiceDate;
+	private long serviceDate;
 	// Дата закрытия заявки
-	private long ClosedDate;
+	private long closedDate;
 	// Коментарий к заявке
-	private String Comment;
+	private String comment;
 	
 	
 	public Info_request(){
-		IncomeDate = 0;
-		FullNameClient = null;
-		Address = null;
-		ServiceDate = 0;
-		ClosedDate = 0;
-		Comment = null;
+		incomeDate = 0;
+		fullNameClient = null;
+		address = null;
+		serviceDate = 0;
+		closedDate = 0;
+		comment = null;
 	}
 		
 	public Info_request(
-			long incomeDate,
-			String fullNameClient,
-			String address,
-			long serviceDate,
-			long closedDate,
-			String comment){
-		IncomeDate = incomeDate;
-		FullNameClient = fullNameClient;
-		Address = address;
-		ServiceDate = serviceDate;
-		ClosedDate = closedDate;
-		Comment = comment;
+			long _incomeDate,
+			String _fullNameClient,
+			String _address,
+			long _serviceDate,
+			long _closedDate,
+			String _comment){
+		incomeDate = _incomeDate;
+		fullNameClient = _fullNameClient;
+		address = _address;
+		serviceDate = _serviceDate;
+		closedDate = _closedDate;
+		comment = _comment;
 	}
 	
 	public long getIncomeDate() {
-		return IncomeDate;
+		return incomeDate;
 	}
-	public void setIncomeDate(long incomeDate) {
-		IncomeDate = incomeDate;
+	public void setIncomeDate(long _incomeDate) {
+		incomeDate = _incomeDate;
 	}
 	public String getFullNameClient() {
-		return FullNameClient;
+		return fullNameClient;
 	}
-	public void setFullNameClient(String fullNameClient) {
-		FullNameClient = fullNameClient;
+	public void setFullNameClient(String _fullNameClient) {
+		fullNameClient = _fullNameClient;
 	}
 	public String getAddress() {
-		return Address;
+		return address;
 	}
-	public void setAddress(String address) {
-		Address = address;
+	public void setAddress(String _address) {
+		address = _address;
 	}
 	public long getServiceDate() {
-		return ServiceDate;
+		return serviceDate;
 	}
-	public void setServiceDate(long serviceDate) {
-		ServiceDate = serviceDate;
+	public void setServiceDate(long _serviceDate) {
+		serviceDate = _serviceDate;
 	}
 	public long getClosedDate() {
-		return ClosedDate;
+		return closedDate;
 	}
-	public void setClosedDate(long closedDate) {
-		ClosedDate = closedDate;
+	public void setClosedDate(long _closedDate) {
+		closedDate = _closedDate;
 	}
 	public String getComment() {
-		return Comment;
+		return comment;
 	}
-	public void setComment(String comment) {
-		Comment = comment;
+	public void setComment(String _comment) {
+		comment = _comment;
 	}
 		
 }

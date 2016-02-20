@@ -2,34 +2,34 @@ package entites;
 
 public class Personnel {
 	// Должность сотрудника (Оператор/Мастер)
-	private String EmployeePosition = null;
+	private String employeePosition = null;
 	// ФИО сотрудника
-	private String FullNameEmployee = null;
+	private String fullNameEmployee = null;
 	
 		
 	public Personnel(){
-		EmployeePosition = null;
-		FullNameEmployee = null;
+		employeePosition = null;
+		fullNameEmployee = null;
 	}
 	
 	public Personnel(
-			String employeePosition,
-			String fullNameEmployee){
-		EmployeePosition = employeePosition;
-		FullNameEmployee = fullNameEmployee;
+			String _employeePosition,
+			String _fullNameEmployee){
+		employeePosition = _employeePosition;
+		fullNameEmployee = _fullNameEmployee;
 		
 	}
 	
 	public String getEmployeePosition() {
-		return EmployeePosition;
+		return employeePosition;
 	}
-	public void setEmployeePosition(String employeePosition) {
-		EmployeePosition = employeePosition;
+	public void setEmployeePosition(String _employeePosition) {
+		employeePosition = _employeePosition;
 	}
 	public String getFullNameEmployee() {
-		return FullNameEmployee;
+		return fullNameEmployee;
 	}
-	public void setFullNameEmployee(String fullNameEmployee) {
-		FullNameEmployee = fullNameEmployee;
+	public void setFullNameEmployee(String _fullNameEmployee) {
+		fullNameEmployee = _fullNameEmployee;
 	}
 }

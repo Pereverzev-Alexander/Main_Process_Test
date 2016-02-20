@@ -2,22 +2,22 @@ package entites;
 
 public class Active_services {
 	// Тип подключаемой услуги (интернет/ТВ/Телефон)
-	private String TypeService;
+	private String typeService;
 	
 	
 	public Active_services() {
-		TypeService = null;
+		typeService = null;
 	}
 	
-	public Active_services(String typeService){
-		TypeService = typeService;
+	public Active_services(String _typeService){
+		typeService = _typeService;
 	}
 	
 	public String getTypeService() {
-		return TypeService;
+		return typeService;
 	}
 
-	public void setTypeService(String typeService) {
-		TypeService = typeService;
+	public void setTypeService(String _typeService) {
+		typeService = _typeService;
 	}
 }
