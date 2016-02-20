@@ -1,35 +1,39 @@
 package entites;
 
+/**
+ * @author Alexander
+ * РЎСѓС‰РЅРѕСЃС‚СЊ РґР»СЏ С‚Р°Р±Р»РёС†С‹ "РЎРѕС‚СЂСѓРґРЅРёРєРё"
+ */
 public class Personnel {
-	// Должность сотрудника (Оператор/Мастер)
-	private String EmployeePosition = null;
-	// ФИО сотрудника
-	private String FullNameEmployee = null;
+	// Р”РѕР»Р¶РЅРѕСЃС‚СЊ СЃРѕС‚СЂСѓРґРЅРёРєР° (РѕРїРµСЂР°С‚РѕСЂ/РјР°СЃС‚РµСЂ)
+	private String employeePosition = null;
+	// Р¤РРћ СЃРѕС‚СЂСѓРґРЅРёРєР°
+	private String fullNameEmployee = null;
 	
 		
 	public Personnel(){
-		EmployeePosition = null;
-		FullNameEmployee = null;
+		employeePosition = null;
+		fullNameEmployee = null;
 	}
 	
 	public Personnel(
-			String employeePosition,
-			String fullNameEmployee){
-		EmployeePosition = employeePosition;
-		FullNameEmployee = fullNameEmployee;
+			String _employeePosition,
+			String _fullNameEmployee){
+		employeePosition = _employeePosition;
+		fullNameEmployee = _fullNameEmployee;
 		
 	}
 	
 	public String getEmployeePosition() {
-		return EmployeePosition;
+		return employeePosition;
 	}
-	public void setEmployeePosition(String employeePosition) {
-		EmployeePosition = employeePosition;
+	public void setEmployeePosition(String _employeePosition) {
+		employeePosition = _employeePosition;
 	}
 	public String getFullNameEmployee() {
-		return FullNameEmployee;
+		return fullNameEmployee;
 	}
-	public void setFullNameEmployee(String fullNameEmployee) {
-		FullNameEmployee = fullNameEmployee;
+	public void setFullNameEmployee(String _fullNameEmployee) {
+		fullNameEmployee = _fullNameEmployee;
 	}
 }
