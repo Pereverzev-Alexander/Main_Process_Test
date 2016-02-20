@@ -1,24 +1,29 @@
 package entites;
 
+/**
+ * @author Alexander
+ * РћР±С‰Р°СЏ СЃСѓС‰РЅРѕСЃС‚СЊ, РІРєР»СЋС‡Р°СЋС‰Р°СЏ РІ СЃРµР±СЏ РІСЃРµ РїРѕР»СЏ. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ СЌРєСЃРїРѕСЂС‚Р° РІ XLS РґРѕРєСѓРјРµРЅС‚ Рё 
+ * РґР»СЏ Р·Р°РїСЂРѕСЃР°, РІРѕР·РІСЂР°С‰Р°СЋС‰РµРіРѕ Р’РЎР® РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Р·Р°СЏРІРєРµ 
+ */
 public class GeneralEntity {
-	// Тип подключаемой услуги (интернет/ТВ/Телефон)
+	// РўРёРї РїРѕРґРєР»СЋС‡Р°РµРјРѕР№ СѓСЃР»СѓРіРё (РРЅС‚РµСЂРЅРµС‚/РўР’/РўРµР»РµС„РѕРЅ)
 	private String typeService;
-	// Дата заявки
+	// Р”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё Р·Р°СЏРІРєРё
 	private long incomeDate;
-	// ФИО клиента
+	// Р¤РРћ РєР»РёРµРЅС‚Р°
 	private String fullNameClient;
-	// Адрес клиента
+	// РђРґСЂРµСЃ РєР»РёРµРЅС‚Р°
 	private String address;
-	// Планируемая дата выезда мастера
+	// РџР»Р°РЅРёСЂСѓРµРјР°СЏ РґР°С‚Р° РІС‹РµР·РґР° РєР»РёРµРЅС‚Р°
 	private long serviceDate;
-	// Дата закрытия заявки
+	// Р”Р°С‚Р° Р·Р°РєСЂС‹С‚РёСЏ Р·Р°СЏРІРєРё
 	private long closedDate;
-	// Коментарий к заявке
+	// РљРѕРјРјРµРЅС‚Р°СЂРёР№ Рє Р·Р°СЏРІРєРµ
 	private String comment;
-	// Должность сотрудника (Оператор/Мастер)
-	private String employeePosition = null;
-	// ФИО сотрудника
-	private String fullNameEmployee = null;
+	// Р¤РРћ РѕРїРµСЂР°С‚РѕСЂР°, РїСЂРёРЅСЏРІС€РµРіРѕ Р·Р°СЏРІРєСѓ
+	private String fullNameOperator = null;
+	// Р¤РРћ РјР°СЃС‚РµСЂР°
+	private String fullNameMaster = null;
 	
 	
 	public GeneralEntity(){
@@ -29,8 +34,8 @@ public class GeneralEntity {
 		serviceDate = 0;
 		closedDate = 0;
 		comment = null;
-		employeePosition = null;
-		fullNameEmployee = null;
+		fullNameOperator = null;
+		fullNameMaster = null;
 	}
 	
 	public GeneralEntity(
@@ -41,8 +46,8 @@ public class GeneralEntity {
 			long _serviceDate,
 			long _closedDate,
 			String _comment,
-			String _employeePosition,
-			String _fullNameEmployee){
+			String _fullNameOperator,
+			String _fullNameMaster){
 		typeService = _typeService;
 		incomeDate = _incomeDate;
 		fullNameClient = _fullNameClient;
@@ -50,8 +55,8 @@ public class GeneralEntity {
 		serviceDate = _serviceDate;
 		closedDate = _closedDate;
 		comment = _comment;
-		employeePosition = _employeePosition;
-		fullNameEmployee = _fullNameEmployee;
+		fullNameOperator = _fullNameOperator;
+		fullNameMaster = _fullNameMaster;
 	}
 
 	public String getTypeService() {
@@ -111,19 +116,19 @@ public class GeneralEntity {
 	}
 
 	public String getEmployeePosition() {
-		return employeePosition;
+		return fullNameOperator;
 	}
 
-	public void setEmployeePosition(String _employeePosition) {
-		employeePosition = _employeePosition;
+	public void setEmployeePosition(String _fullNameOperator) {
+		fullNameOperator = _fullNameOperator;
 	}
 
 	public String getFullNameEmployee() {
-		return fullNameEmployee;
+		return fullNameMaster;
 	}
 
-	public void setFullNameEmployee(String _fullNameEmployee) {
-		fullNameEmployee = _fullNameEmployee;
+	public void setFullNameEmployee(String _fullNameMaster) {
+		fullNameMaster = _fullNameMaster;
 	}
 	
 	

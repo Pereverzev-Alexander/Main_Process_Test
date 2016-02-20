@@ -1,9 +1,13 @@
 package entites;
 
+/**
+ * @author Alexander
+ * РЎСѓС‰РЅРѕСЃС‚СЊ РґР»СЏ С‚Р°Р±Р»РёС†С‹ "РЎРѕС‚СЂСѓРґРЅРёРєРё"
+ */
 public class Personnel {
-	// Должность сотрудника (Оператор/Мастер)
+	// Р”РѕР»Р¶РЅРѕСЃС‚СЊ СЃРѕС‚СЂСѓРґРЅРёРєР° (РѕРїРµСЂР°С‚РѕСЂ/РјР°СЃС‚РµСЂ)
 	private String employeePosition = null;
-	// ФИО сотрудника
+	// Р¤РРћ СЃРѕС‚СЂСѓРґРЅРёРєР°
 	private String fullNameEmployee = null;
 	
 		
