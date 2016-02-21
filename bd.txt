@@ -69,3 +69,37 @@ INSERT into requests(first_name, second_name, surname, address, service_id, mast
 values ('Орлова', 'Эвелина', 'Артемовна', 'ул. Беговая 2-я, дом 35, квартира 172', 4, 6, 4, 1448928000, 1449187200, 1449169200, 'комментарий');
 INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) 
 values ('Рзаева', 'Таисия', 'Владиславовна ', 'ул. Заречная, дом 70, квартира 115', 2, 7, 8, 1449273600, 1449446400, 1449410400, 'комментарий');
+
+
+Запросы:
+
+//Все мастера
+select staff.first_name, staff.second_name, staff.surname 
+from staff, staff_positions 
+where 
+	staff.position_id = staff_positions.id and
+	staff_positions.name = 'Мастер';
+	
+
+//Все операторы
+select staff.first_name, staff.second_name, staff.surname 
+from staff, staff_positions 
+where 
+	staff.position_id = staff_positions.id and
+	staff_positions.name = 'Менеджер';
+
+
+//Процедура: Добавить заявку
+CREATE PROCEDURE `addRequest`(IN `first_name` VARCHAR(30), IN `second_name` VARCHAR(30), IN `surname` VARCHAR(30), IN `address` VARCHAR(100), IN `service_id` INT(10), IN `master_id` INT(10), IN `operator_id` INT(10), IN `open_date` BIGINT(10), IN `close_date` BIGINT(10), IN `service_date` BIGINT(10), IN `comment` VARCHAR(100)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) values (first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment);
+
+//Пример вызова
+call addRequest('Шашков', 'Святослав', 'Романович', 'ул. Вагонников 3-я, дом 88, квартира 267', 3, 5, 4, 1449705600, 1449964800, 1449921600, 'комментарий');
+
+
+
+//Процедура: вывод ФИО мастеров и соответствующих им дат выездов к клиенту времени от Х до Y (дата выезда мастера)
+
+CREATE PROCEDURE `mastersDate`(IN `X` BIGINT(10), IN `Y` BIGINT(10)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT staff.first_name, staff.second_name, staff.surname, requests.service_date from requests, staff where requests.master_id = staff.id AND requests.service_date BETWEEN X and Y GROUP BY first_name;
+
+//Пример вызова
+call mastersDate(1448215200, 1449410400);
