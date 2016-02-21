@@ -1,32 +1,48 @@
 package convertUtilites;
 
-/*Заявка на подключение содержит в себе следующую информацию
-•	Дата заявки – выбор из списка;
-•	ФИО Клиента – ручной ввод;
-•	Адрес – ручной ввод;
-•	Подключаемая Услуга (Интернет/TV/Телефон) – выбор из БД;
-•	ФИО Оператора принявшего заявку – выбор из базы данны;
-•	Планируемая дата выезда мастера – выбор из списка;
-•	ФИО Мастера – выбор из базы данных;
-•	Дата закрытия заявки – выбор из списка
-•	Комментарий ручной ввод;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormat;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
+/* Р—Р°СЏРІРєР° РЅР° РїРѕРґРєР»СЋС‡РµРЅРёРµ СЃРѕРґРµСЂР¶РёС‚ РІ СЃРµР±Рµ СЃР»РµРґСѓСЋС‰СѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ
+вЂў	Р”Р°С‚Р° Р·Р°СЏРІРєРё вЂ“ РІС‹Р±РѕСЂ РёР· СЃРїРёСЃРєР°;
+вЂў	Р¤РРћ РљР»РёРµРЅС‚Р° вЂ“ СЂСѓС‡РЅРѕР№ РІРІРѕРґ;
+вЂў	РђРґСЂРµСЃ вЂ“ СЂСѓС‡РЅРѕР№ РІРІРѕРґ;
+вЂў	РџРѕРґРєР»СЋС‡Р°РµРјР°СЏ РЈСЃР»СѓРіР° (РРЅС‚РµСЂРЅРµС‚/TV/РўРµР»РµС„РѕРЅ) вЂ“ РІС‹Р±РѕСЂ РёР· Р‘Р”;
+вЂў	Р¤РРћ РћРїРµСЂР°С‚РѕСЂР° РїСЂРёРЅСЏРІС€РµРіРѕ Р·Р°СЏРІРєСѓ вЂ“ РІС‹Р±РѕСЂ РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹;
+вЂў	РџР»Р°РЅРёСЂСѓРµРјР°СЏ РґР°С‚Р° РІС‹РµР·РґР° РјР°СЃС‚РµСЂР° вЂ“ РІС‹Р±РѕСЂ РёР· СЃРїРёСЃРєР°;
+вЂў	Р¤РРћ РњР°СЃС‚РµСЂР° вЂ“ РІС‹Р±РѕСЂ РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С…;
+вЂў	Р”Р°С‚Р° Р·Р°РєСЂС‹С‚РёСЏ Р·Р°СЏРІРєРё вЂ“ РІС‹Р±РѕСЂ РёР· СЃРїРёСЃРєР°
+вЂў	РљРѕРјРјРµРЅС‚Р°СЂРёР№ СЂСѓС‡РЅРѕР№ РІРІРѕРґ;
 
 long _incomeDate,
 String _fullNameClient,
 String _address,
 long _serviceDate,
 long _closedDate,
-String _comment*/
+String _comment */
 
-
-
-public class ConvertToXLS (String file) throws FileNotFoundException, IOException{
+public class ConvertToXLS {
+	void test(String f) throws FileNotFoundException, IOException {
 	File file = new File("requests.xls");
-	FileInputStream fis = new FileInputStream(myFile);
+	FileInputStream fis = new FileInputStream(file);
 	Workbook book = new HSSFWorkbook(fis);
 	Sheet sheet = book.createSheet("Requests");
+	POIFSFileSystem fs;
 
-	// Нумерация начинается с нуля
+	// РќСѓРјРµСЂР°С†РёСЏ РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ РЅСѓР»СЏ
 	//.getSheetAt(0);
 	Row row = sheet.createRow(0); 
 
@@ -34,30 +50,34 @@ public class ConvertToXLS (String file) throws FileNotFoundException, IOExceptio
 	Iterator<Row> rowIterator = sheet.iterator();
 
 
-	// Set to Iterate and add rows into XLS file 
-	Set<String> newRows = data.keySet();
+//	// Set to Iterate and add rows into XLS file 
+//	Set<String> newRows = data.keySet();
 
 	// get the last row number to append new data 
 	int rownum = sheet.getLastRowNum(); 
 
-
-
-	while ()
-	// формата dd.mm.yyyy
-	Cell _fullNameClient = row.createCell(0);
-	name.setCellValue("_fullNameClient");
-
-	Cell _incomeDate = row.createCell(1);
-	name.setCellValue("_incomeDate");
-
-	DataFormat format = book.createDataFormat();
-	CellStyle dateStyle = book.createCellStyle();
-	dateStyle.setDataFormat(format.getFormat("dd.mm.yyyy"));
-	birthdate.setCellStyle(dateStyle);
-
-
+//
+//
+//	while (true) {
+//	// С„РѕСЂРјР°С‚Р° dd.mm.yyyy
+//	Cell _fullNameClient = row.createCell(0);
+//	_fullNameClient.setCellValue("_fullNameClient");
+//
+//	Cell СЃ = row.createCell(1);
+//	_fullNameClient.setCellValue("_incomeDate");
+//
+//	DataFormat format = book.createDataFormat();
+//	CellStyle dateStyle = book.createCellStyle();
+//	dateStyle.setDataFormat(format.getFormat("dd.mm.yyyy"));
+//	//birthdate.setCellStyle(dateStyle);
+//	}
+//	
+//	// Р—Р°РїРёСЃС‹РІР°РµРј РІСЃС‘ РІ С„Р°Р№Р»
+//	book.write(new FileOutputStream(file));
+//	book.close();
+	}
 	
-	// Записываем всё в файл
-	book.write(new FileOutputStream(file));
-	book.close();
+	public static void main(String[] argv) {
+		System.out.println("Hello World!");
+	}
 }
