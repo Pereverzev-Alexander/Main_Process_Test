@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entities.Employee;
-import entities.GeneralEntity;
 /*
  * Класс для взаимодействия с БД MySQL
  * 
@@ -129,7 +128,7 @@ public class DbDriver {
 	}
 	
 	/*
-	 * Get list off all employees
+	 * Get list of all employees
 	 */
 	public List<Employee> getEmployees() throws SQLException{
 		if (connection == null)
@@ -153,6 +152,7 @@ public class DbDriver {
 		}
 		return res;			
 		
-		
 	}
+	
+	
 }
