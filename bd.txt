@@ -1,5 +1,5 @@
 create table requests (
-    id int not null, 
+    id int not null AUTO_INCREMENT, 
     first_name varchar(30) not null,
 	second_name varchar(30) not null,
 	surname varchar(30) not null,
@@ -45,3 +45,27 @@ primary key(id));
 
 insert into staff_positions values (1,'Менеджер');
 insert into staff_positions values (2,'Мастер');
+
+
+// data:
+
+insert into staff values (1,1,'Марфа','Васильевна','Иванова');
+insert into staff values (2,2,'Серафим','Геннадиевич','Сидоров');
+INSERT into staff values (3, 1,'Зеленова', 'Оксана', 'Матвеевна');
+INSERT into staff values (4, 1,'Попова', 'Юлия', 'Геннадиевна');
+INSERT into staff values (5, 2,'Сергеев', 'Владлен','Иванович');
+INSERT into staff values (6, 2,'Секунов', 'Венедикт', 'Ильич');
+INSERT into staff values (7, 2,'Павлов', 'Ангел', 'Эльдарович');
+INSERT into staff values (8, 1,'Гусева', 'Флора', 'Николаевна');
+INSERT into staff values (9, 1,'Полякова', 'Элизабет', 'Александровна')
+INSERT into staff values (10, 2,'Крылов', 'Иосиф', 'Филиппович');
+
+
+INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) values ('Кириллова', 'Марианна', 'Артемовна', 'ул. Бардина, дом 93, квартира 135', 1, 2, 1, 1447545600, 1447686000, 1447718400, 'комментарий');
+INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) values ('Киселёв', 'Автоном',' Артемович', 'ул. Маршала Конева, дом 74, квартира 123', 3, 10, 8, 1447977600, 1448236800, 1448215200, 'комментарий');
+INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) 
+values ('Веселко', 'Бажен', 'Вадимович', 'ул. Пушкина, дом 6, квартира 73', 5, 5, 3, 1448409600, 1448582400, 1448557200, 'комментарий');
+INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) 
+values ('Орлова', 'Эвелина', 'Артемовна', 'ул. Беговая 2-я, дом 35, квартира 172', 4, 6, 4, 1448928000, 1449187200, 1449169200, 'комментарий');
+INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) 
+values ('Рзаева', 'Таисия', 'Владиславовна ', 'ул. Заречная, дом 70, квартира 115', 2, 7, 8, 1449273600, 1449446400, 1449410400, 'комментарий');
