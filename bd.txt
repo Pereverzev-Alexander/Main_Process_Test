@@ -1,0 +1,47 @@
+create table requests (
+    id int not null, 
+    first_name varchar(30) not null,
+	second_name varchar(30) not null,
+	surname varchar(30) not null,
+    address varchar(100) not null,  
+    service_id int(10) not null,
+	master_id int(10) not null,
+    operator_id int(10) not null, 
+	open_date bigint(10) not null, 
+	close_date bigint(10) not null, 
+	service_date bigint(10) not null, 
+    comment varchar(100) not null,
+	primary key(id),
+	foreign key (service_id) references services(id),
+	foreign key (master_id) references staff(id),
+	foreign key (operator_id) references staff(id)
+	);
+
+create table services (
+id int(10) not null,
+name varchar(30) not null unique,
+primary key(id));
+insert into services values (1,'Интернет');
+insert into services values (2,'ТВ');
+insert into services values (3,'Телефон');
+insert into services values (4,'Телефон + ТВ');
+insert into services values (5,'Интернет + Телефон');
+insert into services values (6,'ТВ + Интернет');
+insert into services values (7,'Интернет + ТВ + Телефон');
+
+create table staff (
+id int(10) not null,
+position_id int(10) not null,
+first_name varchar(30) not null,
+second_name varchar(30) not null,
+surname varchar(30) not null,
+primary key(id),
+foreign key (position_id) references staff_positions (id));
+
+create table staff_positions (
+id int(10) not null,
+name varchar(30) not null,
+primary key(id));
+
+insert into staff_positions values (1,'Менеджер');
+insert into staff_positions values (2,'Мастер');
