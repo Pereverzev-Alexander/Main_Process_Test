@@ -8,7 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException;
+
 import entities.Employee;
+import entities.Request;
 /*
  * Класс для взаимодействия с БД MySQL
  * 
@@ -42,24 +45,25 @@ public class DbDriver {
 	 */
 	public boolean connect() {
 		try{
+			System.out.println("Connecting to "+url);
 			connection = DriverManager.getConnection(url, user, pswd);
 			statement = connection.createStatement();
 			
 			return true;
 		}
 		catch (SQLException e)		{
-			e.printStackTrace();
-			connection = null;
+			System.out.println("Connection failed");
+			//e.printStackTrace();			
 			try {
-				connection.close();
+				if (connection != null){
+					connection.close();
+					connection = null;
+				}
 			} catch (SQLException ex) {
 				// TODO Auto-generated catch block
 				ex.printStackTrace();
 			}
 			return false;
-		}
-		finally {
-			
 		}
 	}
 	
@@ -150,9 +154,40 @@ public class DbDriver {
 			res.add(employee);
 			
 		}
-		return res;			
-		
+		return res;				
 	}
 	
-	
+	public List<Request> getAllRequests() throws SQLException{
+		if (connection == null)
+		{
+			return null;
+		}
+		
+		//TODO: replace this query with correct one
+		String query = "select id,first_name,second_name,surname,address,service_id,master_id,operator_id,"+
+				"open_date,close_date,service_date from requests";
+		result = statement.executeQuery(query);
+		List<Request> res = new ArrayList<Request>();
+		while (result.next())
+		{
+			Request request = new Request();
+			request.setId(result.getInt(1));
+			request.setClientName(result.getString(2));
+			request.setClientSecondName(result.getString(3));
+			request.setClientSurname(result.getString(4));
+			request.setAddress(result.getString(5));
+			
+			//setup required services
+			int service_id = result.getInt(6);
+			Integer []service_arr = Request.services_in_table[service_id-1];
+			for(Integer i:service_arr) {
+				request.addRequiredService(i);
+			}
+			
+			res.add(request);
+			
+		}
+		return res;
+		
+	}
 }

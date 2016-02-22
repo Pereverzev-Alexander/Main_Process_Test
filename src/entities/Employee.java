@@ -43,6 +43,23 @@ public class Employee {
 		surname = _surname;
 		
 	}
+	
+	/*
+	 * Get employee's surname and initials as Ivanov A. A.
+	 */
+	public String getInitials(){
+		if(surname == null)
+			return null;
+		if(second_name == null){
+			if(name != null){
+				return surname+" "+name.substring(0,1).toUpperCase()+".";
+			}
+			return surname;
+		}
+		String res = surname+" "+name.substring(0,1).toUpperCase()+". "+
+					second_name.substring(0,1).toUpperCase()+".";
+		return res;
+	}
 
 	/**
 	 * @return the position

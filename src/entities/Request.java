@@ -13,11 +13,21 @@ public class Request {
 	public final static Integer service_tv_id = 2;
 	public final static Integer service_telephone_id = 3;
 	
+	//Расшифровка таблицы services
+	public static final Integer[][] services_in_table = {
+			{service_internet_id}, //services.id 1
+			{service_tv_id}	,     //services.id 2
+			{service_telephone_id},  //services.id 3
+			{service_telephone_id,service_tv_id}, //services.id 4
+			{service_internet_id,service_telephone_id}, //services.id 5
+			{service_tv_id,service_internet_id}, //services.id 6
+			{service_internet_id,service_tv_id,service_telephone_id} //services.id 7
+	};
 	
 	// Дата регистрации заявки
 	private long incomeDate;
 	// ФИО клиента
-	private String fullNameClient;
+	private String clientName,clientSecondName,clientSurname;
 	// Адрес клиента
 	private String address;
 	// Планируемая дата выезда к клиенту
@@ -27,21 +37,28 @@ public class Request {
 	// Комментарий к заявке
 	private String comment;
 	//ФИО оператора
-	private String operatorName;
+	private Employee operator;
 	//ФИО мастера
-	private String masterName;
+	private Employee master;
 	//Типы услуг
 	private List<Integer> services;
+	//Идентификатор заявки
+	private int id;
 	
 	
 
 	public Request(){
 		incomeDate = 0;
-		fullNameClient = null;
+		clientName = null;
+		clientSecondName = null;
+		clientSurname = null;
 		address = null;
 		serviceDate = 0;
 		closedDate = 0;
 		comment = null;
+		master = null;
+		operator = null;
+		id = 0;
 	}
 	
 	//consider deprecated
@@ -118,12 +135,6 @@ public class Request {
 	public void setIncomeDate(long _incomeDate) {
 		incomeDate = _incomeDate;
 	}
-	public String getFullNameClient() {
-		return fullNameClient;
-	}
-	public void setFullNameClient(String _fullNameClient) {
-		fullNameClient = _fullNameClient;
-	}
 	public String getAddress() {
 		return address;
 	}
@@ -151,29 +162,132 @@ public class Request {
 	/**
 	 * @return the operatorName
 	 */
-	public String getOperatorName() {
-		return operatorName;
+	public String getOperatorInitials() {
+		if(operator != null){
+			return operator.getInitials();
+		}
+		else return null;
+	}
+	
+	public String getMasterInitials() {
+		if(master != null){
+			return master.getInitials();
+		}
+		else return null;
 	}
 
-	/**
-	 * @param operatorName the operatorName to set
-	 */
 	public void setOperatorName(String operatorName) {
-		this.operatorName = operatorName;
+		if(operator == null){
+			operator = new Employee();
+		}
+		operator.setName(operatorName);
 	}
-
-	/**
-	 * @return the masterName
-	 */
-	public String getMasterName() {
-		return masterName;
+	
+	public void setOperatorSecondName(String sec_name) {
+		if(operator == null){
+			operator = new Employee();
+		}
+		operator.setSecondName(sec_name);
 	}
-
-	/**
-	 * @param masterName the masterName to set
-	 */
+	
+	public void setOperatorSurname(String surname) {
+		if(operator == null){
+			operator = new Employee();
+		}
+		operator.setSurname(surname);
+	}
+	
 	public void setMasterName(String masterName) {
-		this.masterName = masterName;
+		if(master == null){
+			master = new Employee();
+		}
+		master.setName(masterName);
 	}
+	
+	public void setMasterSecondName(String sec_name) {
+		if(master == null){
+			master = new Employee();
+		}
+		master.setSecondName(sec_name);
+	}
+	
+	public void setMasterSurname(String surname) {
+		if(master == null){
+			master = new Employee();
+		}
+		master.setSurname(surname);
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the clientName
+	 */
+	public String getClientName() {
+		return clientName;
+	}
+
+	/**
+	 * @param clientName the clientName to set
+	 */
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	/**
+	 * @return the clientSecondName
+	 */
+	public String getClientSecondName() {
+		return clientSecondName;
+	}
+
+	/**
+	 * @param clientSecondName the clientSecondName to set
+	 */
+	public void setClientSecondName(String clientSecondName) {
+		this.clientSecondName = clientSecondName;
+	}
+
+	/**
+	 * @return the clientSurname
+	 */
+	public String getClientSurname() {
+		return clientSurname;
+	}
+
+	/**
+	 * @param clientSurname the clientSurname to set
+	 */
+	public void setClientSurname(String clientSurname) {
+		this.clientSurname = clientSurname;
+	}
+
+	/*
+	 * Get client full name as Ivanov Akakiy Akakievich
+	 */
+	public String getClientFullName(){
+		return clientName+" "+clientSecondName+" "+clientSurname;
+	}
+	
+	/*
+	 * Add service by it's id
+	 */
+	public void addRequiredService(int serv_id){
+		services.add(serv_id);
+	}
+
+	
 		
 }
