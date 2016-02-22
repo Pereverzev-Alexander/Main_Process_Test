@@ -51,24 +51,30 @@ insert into staff_positions values (2,'Мастер');
 
 insert into staff values (1,1,'Марфа','Васильевна','Иванова');
 insert into staff values (2,2,'Серафим','Геннадиевич','Сидоров');
-INSERT into staff values (3, 1,'Оксана', 'Зеленова', 'Матвеевна');
-INSERT into staff values (4, 1,'Юлия', 'Попова', 'Геннадиевна');
-INSERT into staff values (5, 2,'Владлен', 'Сергеев','Иванович');
-INSERT into staff values (6, 2,'Венедикт', 'Секунов', 'Ильич');
-INSERT into staff values (7, 2,'Ангел', 'Павлов', 'Эльдарович');
-INSERT into staff values (8, 1,'Флора', 'Гусева', 'Николаевна');
-INSERT into staff values (9, 1,'Элизабет', 'Полякова', 'Александровна')
-INSERT into staff values (10, 2,'Иосиф', 'Крылов', 'Филиппович');
+INSERT into staff values (3, 1,'Оксана', 'Матвеевна', 'Зеленова');
+INSERT into staff values (4, 1,'Юлия', 'Геннадиевна', 'Попова');
+INSERT into staff values (5, 2,'Владлен', 'Иванович','Сергеев');
+INSERT into staff values (6, 2,'Венедикт', 'Ильич', 'Секунов');
+INSERT into staff values (7, 2,'Ангел', 'Эльдарович', 'Павлов');
+INSERT into staff values (8, 1,'Флора', 'Николаевна', 'Гусева');
+INSERT into staff values (9, 1,'Элизабет', 'Александровна', 'Полякова')
+INSERT into staff values (10, 2,'Иосиф', 'Филиппович', 'Крылов');
 
 
-INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) values ('Марианна', 'Кириллова', 'Артемовна', 'ул. Бардина, дом 93, квартира 135', 1, 2, 1, 1447545600, 1447686000, 1447718400, 'комментарий');
-INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) values ('Автоном', 'Киселёв',' Артемович', 'ул. Маршала Конева, дом 74, квартира 123', 3, 10, 8, 1447977600, 1448236800, 1448215200, 'комментарий');
+INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) values ('Марианна', 'Артемовна', 'Кириллова', 'ул. Бардина, дом 93, квартира 135', 1, 2, 1, 1447545600, 1447686000, 1447718400, 'комментарий');
+INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) values ('Автоном', 'Артемович',' Киселёв', 'ул. Маршала Конева, дом 74, квартира 123', 3, 10, 8, 1447977600, 1448236800, 1448215200, 'комментарий');
 INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) 
-values ('Бажен', 'Веселко', 'Вадимович', 'ул. Пушкина, дом 6, квартира 73', 5, 5, 3, 1448409600, 1448582400, 1448557200, 'комментарий');
+values ('Бажен', 'Вадимович', 'Веселко', 'ул. Пушкина, дом 6, квартира 73', 5, 5, 3, 1448409600, 1448582400, 1448557200, 'комментарий');
 INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) 
-values ('Эвелина', 'Орлова', 'Артемовна', 'ул. Беговая 2-я, дом 35, квартира 172', 4, 6, 4, 1448928000, 1449187200, 1449169200, 'комментарий');
+values ('Эвелина', 'Артемовна', 'Орлова', 'ул. Беговая 2-я, дом 35, квартира 172', 4, 6, 4, 1448928000, 1449187200, 1449169200, 'комментарий');
 INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) 
-values ('Таисия', 'Рзаева', 'Владиславовна ', 'ул. Заречная, дом 70, квартира 115', 2, 7, 8, 1449273600, 1449446400, 1449410400, 'комментарий');
+values ('Таисия', 'Владиславовна', 'Рзаева ', 'ул. Заречная, дом 70, квартира 115', 2, 7, 8, 1449273600, 1449446400, 1449410400, 'комментарий');
+call addRequest('Елена', 'Тимофеевна', 'Тихомирова', 'ул. Садовая, дом 38, квартира 249', 2, 2, 9, 1450569600, 1450828800, 1450803600, 'комментарий');
+call addRequest('Мстислав', 'Денисович', 'Гаврилов', 'ул. Бебеля, дом 78, квартира 284', 1, 7, 3, 1450828800, 1450915200, 1450900800, 'комментарий');
+call addRequest('Владислава', 'Тимофеевна', 'Дидиченко', 'ул. Бараньи горки, дом 91, квартира 85', 4, 10, 3, 1450915200, 1451174400, 1451134800, 'комментарий');
+call addRequest('Вадим', 'Олегович', 'Сысолятин', 'ул. Бардина, дом 54, квартира 236', 4, 5, 4, 1452470400, 1452470400, 1452535200, 'комментарий');
+call addRequest('Элиза', 'Алексеевна', 'Баранова', 'ул. Гайдара, дом 13, квартира 170', 3, 2, 1, 1452643200, 1452816000, 1452774600, 'комментарий');
+call addRequest('Мариан', 'Леонидович', 'Андреев', 'ул. Бартеневская, дом 13, квартира 147', 1, 6, 3, 1452816000, 1452902400, 1452884400, 'комментарий');
 
 
 Запросы:
@@ -104,7 +110,7 @@ call requestsDate(1448409600, 1449273600)
 CREATE PROCEDURE `addRequest`(IN `first_name` VARCHAR(30), IN `second_name` VARCHAR(30), IN `surname` VARCHAR(30), IN `address` VARCHAR(100), IN `service_id` INT(10), IN `master_id` INT(10), IN `operator_id` INT(10), IN `open_date` BIGINT(10), IN `close_date` BIGINT(10), IN `service_date` BIGINT(10), IN `comment` VARCHAR(100)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER INSERT into requests(first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment) values (first_name, second_name, surname, address, service_id, master_id, operator_id, open_date, close_date, service_date, comment);
 
 //Пример вызова
-call addRequest('Шашков', 'Святослав', 'Романович', 'ул. Вагонников 3-я, дом 88, квартира 267', 3, 5, 4, 1449705600, 1449964800, 1449921600, 'комментарий');
+call addRequest('Святослав', 'Романович', 'Шашков', 'ул. Вагонников 3-я, дом 88, квартира 267', 3, 5, 4, 1449705600, 1449964800, 1449921600, 'комментарий');
 
 
 //Процедура: вывод ФИО мастеров и соответствующих им дат выездов к клиенту времени от Х до Y (дата выезда мастера)
