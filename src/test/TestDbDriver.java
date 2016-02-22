@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import dbUtilities.DbDriver;
 import entities.Employee;
+import entities.Request;
 
 /*
  * Test class for DbDriver
@@ -20,7 +21,9 @@ public class TestDbDriver {
 	 */
 	@Test
 	public void test() {
-		DbDriver driver = new DbDriver("jdbc:mysql://localhost:3306/mp?autoReconnect=true&useSSL=false", "admin", "vae51");
+		//DbDriver driver = new DbDriver("jdbc:mysql://localhost:3306/mp?autoReconnect=true&useSSL=false", "admin", "vae51");
+		
+		DbDriver driver = new DbDriver("jdbc:mysql://85.10.205.173:3306/zayavki?autoReconnect=true&useSSL=false", "mainprocess", "mainprocess");
 		
 		boolean connectionEstablished = driver.connect();
 		assertTrue("Connection error",connectionEstablished);
@@ -50,7 +53,22 @@ public class TestDbDriver {
 			assertEquals(masters_size+op_size, employees.size());
 			System.out.println("Checked employees");
 			
+			/*System.out.println("Print all requests");
+			List<Request> requests = driver.getAllRequests();
+			for(Request req: requests){
+				System.out.println(req.toString());
+			}*/
 			
+			//check all requests
+			List<Request> requests = driver.getAllRequests();
+			assertTrue(requests.size()>0);
+			
+			//check stored procedures
+			System.out.println("Requests between two dates:");
+			requests = driver.getRequestsBetween(1448409600, 1449273600);
+			for(Request req: requests){
+				System.out.println(req.toString());
+			}
 
 			driver.close();
 		}
