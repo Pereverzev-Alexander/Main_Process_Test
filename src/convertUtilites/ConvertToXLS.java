@@ -18,14 +18,27 @@ import org.apache.poi.ss.usermodel.Row;
 import entities.Request;
 
 public class ConvertToXLS {
-
+	//unloading in xls
 	void saveFile(List<Request> list, String name) throws FileNotFoundException, IOException {
 
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("GeneralEntitys");
+
 		Map<String, Object[]> data = new HashMap<String, Object[]>();
+		//create heading
+		data.put(Integer.toString(1), new Object[] {"Дата регистрации заявки",
+				"ФИО клиента",
+				"Адрес клиента",
+				"Тип подключаемой услуги (Интернет/ТВ/Телефон)",
+				"ФИО Оператора принявшего заявку",
+				"Планируемая дата выезда",
+				"ФИО мастера",
+				"Дата закрытия заявки",
+		"Комментарий к заявке"});
+		
+		//filling
 		for (int i=0;i<list.size();i++){
-			data.put(Integer.toString(i+1), new Object[] {list.get(i).getIncomeDateRaw(), 
+			data.put(Integer.toString(i+2), new Object[] {list.get(i).getIncomeDateRaw(), 
 					list.get(i).getClientFullName(), 
 					list.get(i).getAddress(),
 					list.get(i).getTypeServices(),
@@ -35,9 +48,6 @@ public class ConvertToXLS {
 					list.get(i).getClosedDateRaw(),
 					list.get(i).getComment()});
 		}
-		//Map<String, Object[]> data = new HashMap<String, Object[]>();
-		//data.put("2", new Object[] {7d, "Sonya", "75K", "SALES", "Rupert"});
-		
 		Set<String> keyset = data.keySet();
 		int rownum = 0;
 		for (String key : keyset) {
@@ -63,12 +73,14 @@ public class ConvertToXLS {
 
 		//Get iterator to all the rows in current sheet
 		//Iterator<Row> rowIterator = sheet.iterator();
-
 		//Get iterator to all cells of current row
 		//Iterator<Cell> cellIterator = row.cellIterator();
-
-		//int rownum = sheet.getLastRowNum(); 
-
+		//int rownum = sheet.getLastRowNum();
+		
+		int countColumns = 10;
+		for (int i=0;i<countColumns;i++){
+			sheet.autoSizeColumn(i);
+		}
 		FileOutputStream out = new FileOutputStream(name);
 		workbook.write(out);
 		workbook.close();
@@ -89,6 +101,5 @@ public class ConvertToXLS {
 
 		xls.saveFile(list, "res.xls");
 		System.out.println("Writing on XLS file Finished!\n");
-		//System.out.printf("list size =%d",list.size());
 	}
 }
