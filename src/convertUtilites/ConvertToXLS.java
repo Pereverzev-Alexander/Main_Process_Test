@@ -26,23 +26,25 @@ import org.apache.poi.ss.usermodel.Workbook;
 import entites.GeneralEntity;
 
 public class ConvertToXLS {
-	
+
 	void saveFile(List<GeneralEntity> list, String name) throws FileNotFoundException, IOException {
 
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("GeneralEntitys");
-		
-		
-		for (int i=0;i<list.size();i++){
-			Map<String, Object[]> data = new HashMap<String, Object[]>();
-			data.put("i", new Object[] {  "Name", "Salary"});
-		}
 		Map<String, Object[]> data = new HashMap<String, Object[]>();
-		data.put("1", new Object[] {6d, "Name", });
+		for (int i=0;i<list.size();i++){
+			data.put("i+1", new Object[] {list.get(i).getIncomeDate(), 
+					list.get(i).getFullNameClient(), 
+					list.get(i).getAddress(),
+					list.get(i).getTypeService(),
+					list.get(i).getFullNameEmployee(),
+					list.get(i).getServiceDate(),
+					list.get(i).getClosedDate(),
+					list.get(i).getComment()});
+		}
+		//Map<String, Object[]> data = new HashMap<String, Object[]>();
 		//data.put("2", new Object[] {7d, "Sonya", "75K", "SALES", "Rupert"});
-		//data.put("3", new Object[] {8d, "Kris", "85K", "SALES", "Rupert"}); 
-		//data.put("4", new Object[] {9, "Dave", "90K", "SALES", "Rupert"});
-
+		
 		Set<String> keyset = data.keySet();
 		int rownum = 0;
 		for (String key : keyset) {
@@ -57,6 +59,8 @@ public class ConvertToXLS {
 					cell.setCellValue((Boolean)obj);
 				else if(obj instanceof Integer)
 					cell.setCellValue((Integer)obj);
+				else if(obj instanceof Long)
+					cell.setCellValue((Long)obj);
 				else if(obj instanceof String)
 					cell.setCellValue((String)obj);
 				else if(obj instanceof Double)
@@ -71,18 +75,25 @@ public class ConvertToXLS {
 		//Iterator<Cell> cellIterator = row.cellIterator();
 
 		//int rownum = sheet.getLastRowNum(); 
-		
+
 		FileOutputStream out = new FileOutputStream(name);
 		workbook.write(out);
-	    out.close();
+		out.close();
 	}
 
 	public static void main(String[] argv) throws FileNotFoundException, IOException {
 		ConvertToXLS xls = new ConvertToXLS();
 		GeneralEntity req = new GeneralEntity();
-		
 		List<GeneralEntity> list = new ArrayList<GeneralEntity>();
+		//req.setAddress("abc");
+		//list.add(req);
+		//req.setAddress("123");
+		//list.add(req);
+		//req.setAddress("ghj");
+		//list.add(req);
+
 		xls.saveFile(list, "res.xls");
-		System.out.println("Writing on XLS file Finished!");
+		System.out.println("Writing on XLS file Finished!\n");
+		//System.out.printf("list size =%d",list.size());
 	}
 }
