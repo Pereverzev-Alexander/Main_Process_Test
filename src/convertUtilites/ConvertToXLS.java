@@ -23,15 +23,14 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import entites.Info_request;
-
+import entites.GeneralEntity;
 
 public class ConvertToXLS {
 	
-	void saveFile(List<Info_request> list, String name) throws FileNotFoundException, IOException {
+	void saveFile(List<GeneralEntity> list, String name) throws FileNotFoundException, IOException {
 
 		HSSFWorkbook workbook = new HSSFWorkbook();
-		HSSFSheet sheet = workbook.createSheet("Requests");
+		HSSFSheet sheet = workbook.createSheet("GeneralEntitys");
 		
 		
 		for (int i=0;i<list.size();i++){
@@ -80,9 +79,9 @@ public class ConvertToXLS {
 
 	public static void main(String[] argv) throws FileNotFoundException, IOException {
 		ConvertToXLS xls = new ConvertToXLS();
-		Info_request req = new Info_request();
+		GeneralEntity req = new GeneralEntity();
 		
-		List<Info_request> list = new ArrayList<Info_request>();
+		List<GeneralEntity> list = new ArrayList<GeneralEntity>();
 		xls.saveFile(list, "res.xls");
 		System.out.println("Writing on XLS file Finished!");
 	}
