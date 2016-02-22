@@ -23,7 +23,8 @@ public class DbDriver {
 	private static Statement statement;
     private static ResultSet result;
 	private String url,user,pswd;
-	java.sql.CallableStatement callGetRequestsBetween;
+	private static java.sql.CallableStatement callGetRequestsBetween;
+	private static java.sql.CallableStatement callAddRequest;
 	
 	private static List<Employee> employees_cache = null;
 	
@@ -54,6 +55,7 @@ public class DbDriver {
 			
 			//prepare statements
 			callGetRequestsBetween = connection.prepareCall("{call requestsDate(?,?) }");
+			callAddRequest = connection.prepareCall("{call addRequest(?,?,?,?,?,?,?,?,?,?,?) }");
 			
 			return true;
 		}
@@ -160,7 +162,7 @@ public class DbDriver {
 			employee.setPosition(result.getString(5));
 			res.add(employee);
 			
-		}
+		}		
 		return res;				
 	}
 	/*
@@ -236,6 +238,9 @@ public class DbDriver {
 		{
 			return null;
 		}
+		
+		//first call of this function fills list of employees
+		//after that, operator and master fields in request are filled with relevant Employee instances
 		cacheEmployees();
 		
 		
@@ -253,14 +258,91 @@ public class DbDriver {
 		{
 			return null;
 		}
+		
+		//first call of this function fills list of employees
+		//after that, operator and master fields in request are filled with relevant Employee instances
 		cacheEmployees();
 		
 		callGetRequestsBetween.setLong(1, start);
 		callGetRequestsBetween.setLong(2, end);
-		System.out.println("request done");
 		result = callGetRequestsBetween.executeQuery();
 		
 		return parseRequestQueryResult(result);
+	}
+	
+	/*
+	 * Get employee id
+	 */
+	public int getEmployeeIdFromCache(Employee employee){
+		for(Employee e:employees_cache){
+			if(employee.getId() == e.getId())
+				return e.getId();
+		}
+		System.out.println("Employee not found");
+		return 0;
+	}
+	
+	/*
+	 * Add new request to DB
+	 */
+	public boolean addRequest(Request request) throws SQLException{
+		if (connection == null)
+		{
+			return false;
+		}
+		
+		//first call of this function fills list of employees
+		cacheEmployees();
+		
+		callAddRequest.setString(1, request.getClientName());
+		callAddRequest.setString(2, request.getClientSecondName());
+		callAddRequest.setString(3, request.getClientSurname());
+		callAddRequest.setString(4, request.getAddress());
+		
+		callAddRequest.setInt(5, request.getTableServicesId());
+		callAddRequest.setInt(6, getEmployeeIdFromCache(request.getMaster()));
+		callAddRequest.setInt(7, getEmployeeIdFromCache(request.getOperator()));
+		callAddRequest.setLong(8, request.getIncomeDateRaw());
+		callAddRequest.setLong(9, request.getClosedDateRaw());
+		callAddRequest.setLong(10, request.getServiceDateRaw());
+		callAddRequest.setString(11, request.getComment());
+		
+		callAddRequest.executeQuery();
+		
+		return true;
+	}
+	
+	/*
+	 * Add new request to DB
+	 */
+	public boolean addRequest (
+			String clientName,
+			String clientSecondName,
+			String clientSurname,
+			String address,
+			List<Integer> required_services,
+			Employee master,
+			Employee operator,
+			long open_time,
+			long close_time,
+			long service_time,
+			String comment
+			
+			) throws SQLException{
+		Request request = new Request();
+		request.setClientName(clientName);
+		request.setClientSecondName(clientSecondName);
+		request.setClientSurname(clientSurname);
+		request.setAddress(address);
+		request.setServices(required_services);
+		request.setOperator(operator);
+		request.setMaster(master);
+		request.setIncomeDateRaw(open_time);
+		request.setClosedDateRaw(close_time);
+		request.setServiceDateRaw(service_time);
+		request.setComment(comment);
+		return addRequest(request);
+		
 	}
 	
 	

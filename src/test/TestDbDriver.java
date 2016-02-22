@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -69,6 +70,10 @@ public class TestDbDriver {
 			for(Request req: requests){
 				System.out.println(req.toString());
 			}
+			ArrayList<Integer> servlist = new ArrayList<>();
+			servlist.add(1);
+		    driver.addRequest("Шашков", "Святослав", "Романович", "ул. Вагонников 3-я, дом 88, квартира 267",
+					servlist, employees.get(1), employees.get(0), 1449705600L, 1449964800L, 1449921600L, "51 rulez");
 
 			driver.close();
 		}

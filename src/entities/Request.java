@@ -46,7 +46,41 @@ public class Request {
 	//Идентификатор заявки
 	private int id;
 	
-	
+	public int getTableServicesId(){
+		if(services.size() == 1)
+			return services.get(0);
+		if(services.size() == 3)
+			return 7;
+		if(!services.contains(service_internet_id))
+			return 4;
+		if(!services.contains(service_tv_id))
+			return 5;
+		if(!services.contains(service_telephone_id))
+			return 6;
+		System.out.println("Invalid combination of services "+services.toString());
+		return 0;
+	}
+
+	/**
+	 * @param services the services to set
+	 */
+	public void setServices(List<Integer> services) {
+		this.services = services;
+	}
+
+	/**
+	 * @return the operator
+	 */
+	public Employee getOperator() {
+		return operator;
+	}
+
+	/**
+	 * @return the master
+	 */
+	public Employee getMaster() {
+		return master;
+	}
 
 	public Request(){
 		incomeDate = 0;
