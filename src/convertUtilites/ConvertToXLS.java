@@ -1,27 +1,19 @@
 package convertUtilites;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 
 import entities.Request;
 
@@ -33,7 +25,7 @@ public class ConvertToXLS {
 		HSSFSheet sheet = workbook.createSheet("GeneralEntitys");
 		Map<String, Object[]> data = new HashMap<String, Object[]>();
 		for (int i=0;i<list.size();i++){
-			data.put("i+1", new Object[] {list.get(i).getIncomeDateRaw(), 
+			data.put(Integer.toString(i+1), new Object[] {list.get(i).getIncomeDateRaw(), 
 					list.get(i).getClientFullName(), 
 					list.get(i).getAddress(),
 					list.get(i).getTypeServices(),
@@ -70,7 +62,7 @@ public class ConvertToXLS {
 		}
 
 		//Get iterator to all the rows in current sheet
-		Iterator<Row> rowIterator = sheet.iterator();
+		//Iterator<Row> rowIterator = sheet.iterator();
 
 		//Get iterator to all cells of current row
 		//Iterator<Cell> cellIterator = row.cellIterator();
@@ -79,6 +71,7 @@ public class ConvertToXLS {
 
 		FileOutputStream out = new FileOutputStream(name);
 		workbook.write(out);
+		workbook.close();
 		out.close();
 	}
 
@@ -91,6 +84,7 @@ public class ConvertToXLS {
 		req.setAddress("123");
 		list.add(req);
 		req.setAddress("ghj");
+		req.setClientName("Вася");
 		list.add(req);
 
 		xls.saveFile(list, "res.xls");
