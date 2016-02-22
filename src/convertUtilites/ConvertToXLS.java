@@ -3,10 +3,17 @@ package convertUtilites;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
@@ -15,6 +22,8 @@ import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+
+import entites.Info_request;
 
 /* Заявка на подключение содержит в себе следующую информацию
 •	Дата заявки – выбор из списка;
@@ -35,49 +44,70 @@ long _closedDate,
 String _comment */
 
 public class ConvertToXLS {
-	void test(String f) throws FileNotFoundException, IOException {
-	File file = new File("requests.xls");
-	FileInputStream fis = new FileInputStream(file);
-	Workbook book = new HSSFWorkbook(fis);
-	Sheet sheet = book.createSheet("Requests");
-	POIFSFileSystem fs;
-
-	// Нумерация начинается с нуля
-	//.getSheetAt(0);
-	Row row = sheet.createRow(0); 
-
-	// Get iterator to all the rows in current sheet 
-	Iterator<Row> rowIterator = sheet.iterator();
-
-
-//	// Set to Iterate and add rows into XLS file 
-//	Set<String> newRows = data.keySet();
-
-	// get the last row number to append new data 
-	int rownum = sheet.getLastRowNum(); 
-
-//
-//
-//	while (true) {
-//	// формата dd.mm.yyyy
-//	Cell _fullNameClient = row.createCell(0);
-//	_fullNameClient.setCellValue("_fullNameClient");
-//
-//	Cell с = row.createCell(1);
-//	_fullNameClient.setCellValue("_incomeDate");
-//
-//	DataFormat format = book.createDataFormat();
-//	CellStyle dateStyle = book.createCellStyle();
-//	dateStyle.setDataFormat(format.getFormat("dd.mm.yyyy"));
-//	//birthdate.setCellStyle(dateStyle);
-//	}
-//	
-//	// Записываем всё в файл
-//	book.write(new FileOutputStream(file));
-//	book.close();
-	}
 	
-	public static void main(String[] argv) {
-		System.out.println("Hello World!");
+	void saveFile(List<Info_request> list, String name) throws FileNotFoundException, IOException {
+		/*File myfile = new File(name);
+	FileInputStream fis = new FileInputStream(myfile);
+	HSSFWorkbook workbook = new HSSFWorkbook(fis);
+	HSSFSheet sheet = workbook.createSheet("Sample sheet");
+	POIFSFileSystem fs;*/
+
+		//FileInputStream file = new FileInputStream(new File(name));
+
+		HSSFWorkbook workbook = new HSSFWorkbook();
+		HSSFSheet sheet = workbook.createSheet("Requests");
+		
+		
+		for (int i=0;i<list.size();i++){
+			Map<String, Object[]> data = new HashMap<String, Object[]>();
+			data.put("i", new Object[] { , "Name", "Salary"});
+		}
+		Map<String, Object[]> data = new HashMap<String, Object[]>();
+		data.put("1", new Object[] {6d, "Name", });
+		data.put("2", new Object[] {7d, "Sonya", "75K", "SALES", "Rupert"});
+		data.put("3", new Object[] {8d, "Kris", "85K", "SALES", "Rupert"}); 
+		data.put("4", new Object[] {9, "Dave", "90K", "SALES", "Rupert"});
+
+		Set<String> keyset = data.keySet();
+		int rownum = 0;
+		for (String key : keyset) {
+			Row row = sheet.createRow(rownum++);
+			Object [] objArr = data.get(key);
+			int cellnum = 0;
+			for (Object obj : objArr) {
+				Cell cell = row.createCell(cellnum++);
+				if(obj instanceof Date) 
+					cell.setCellValue((Date)obj);
+				else if(obj instanceof Boolean)
+					cell.setCellValue((Boolean)obj);
+				else if(obj instanceof Integer)
+					cell.setCellValue((Integer)obj);
+				else if(obj instanceof String)
+					cell.setCellValue((String)obj);
+				else if(obj instanceof Double)
+					cell.setCellValue((Double)obj);
+			}
+		}
+
+		//Get iterator to all the rows in current sheet
+		Iterator<Row> rowIterator = sheet.iterator();
+
+		//Get iterator to all cells of current row
+		//Iterator<Cell> cellIterator = row.cellIterator();
+
+		//int rownum = sheet.getLastRowNum(); 
+		
+		FileOutputStream out = new FileOutputStream(name);
+		workbook.write(out);
+	    out.close();
+	}
+
+	public static void main(String[] argv) throws FileNotFoundException, IOException {
+		ConvertToXLS xls = new ConvertToXLS();
+		List<Info_request> list = new ArrayList<Info_request>();
+		Info_request req = new Info_request();
+		
+		xls.saveFile(list, "res.xls");
+		System.out.println("Writing on XLS file Finished!");
 	}
 }
