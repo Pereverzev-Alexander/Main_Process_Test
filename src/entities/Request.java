@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,6 +60,7 @@ public class Request {
 		master = null;
 		operator = null;
 		id = 0;
+		services = new ArrayList<Integer>();
 	}
 	
 	//consider deprecated
@@ -103,6 +105,28 @@ public class Request {
 	}
 	
 	/*
+	 * Get all the connected services
+	 */
+	public String getTypeServices(){
+		String temp = null;
+		if(isInternetRequested())
+			temp = "Интернет";
+		else 
+			temp = "";
+		if(isTelephoneRequested() && temp.equals(null))
+			temp = "Телефон";
+		else
+			if(isTelephoneRequested())
+				temp = temp + ", Телефон";
+		if(isTvRequested() && temp.equals(null))
+			temp = "ТВ";
+		else
+			if(isTvRequested())
+				temp = temp + ", ТВ";
+		return temp;
+	}
+	
+	/*
 	 * Add Internet connection to the requested services
 	 */
 	public void addRequestInternet(){
@@ -129,10 +153,24 @@ public class Request {
 		}
 	}
 	
-	public long getIncomeDate() {
+	public long getIncomeDateRaw() {
 		return incomeDate;
 	}
-	public void setIncomeDate(long _incomeDate) {
+	/**
+	 * @param operator the operator to set
+	 */
+	public void setOperator(Employee operator) {
+		this.operator = operator;
+	}
+
+	/**
+	 * @param master the master to set
+	 */
+	public void setMaster(Employee master) {
+		this.master = master;
+	}
+
+	public void setIncomeDateRaw(long _incomeDate) {
 		incomeDate = _incomeDate;
 	}
 	public String getAddress() {
@@ -141,16 +179,16 @@ public class Request {
 	public void setAddress(String _address) {
 		address = _address;
 	}
-	public long getServiceDate() {
+	public long getServiceDateRaw() {
 		return serviceDate;
 	}
-	public void setServiceDate(long _serviceDate) {
+	public void setServiceDateRaw(long _serviceDate) {
 		serviceDate = _serviceDate;
 	}
-	public long getClosedDate() {
+	public long getClosedDateRaw() {
 		return closedDate;
 	}
-	public void setClosedDate(long _closedDate) {
+	public void setClosedDateRaw(long _closedDate) {
 		closedDate = _closedDate;
 	}
 	public String getComment() {
@@ -286,6 +324,11 @@ public class Request {
 	 */
 	public void addRequiredService(int serv_id){
 		services.add(serv_id);
+	}
+	
+	public String toString(){
+		return Integer.toString(id)+" "+clientName+" "+clientSecondName+" "+clientSurname+
+				" ;Оператор: "+operator.getInitials()+" Мастер: "+master.getInitials();
 	}
 
 	

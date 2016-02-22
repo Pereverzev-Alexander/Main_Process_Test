@@ -6,8 +6,13 @@ package entities;
  * Представляет всех сотрудников компании
  */
 public class Employee {
+	//fixed id's in SQL table staff_positions
+	public static final int master_id = 2; 
+	public static final int operator_id = 1;
+	
 	// Должность сотрудника (оператор/мастер)
 	private String position = null;
+	private int position_id = 0;
 	// ФИО сотрудника
 	private String name = null;
 	private String second_name = null;
@@ -33,6 +38,13 @@ public class Employee {
 		this.id = id;
 	}
 
+	/*
+	 * Get position id
+	 */
+	public int getPositionId(){
+		return position_id;
+	}
+	
 	public Employee(int _id,
 			String _employeePosition,
 			String _name,String _sec_name,String _surname){
@@ -73,6 +85,14 @@ public class Employee {
 	 */
 	public void setPosition(String position) {
 		this.position = position;
+	}
+	
+	public void setPosition(int pos_id) {
+		if(pos_id == master_id)
+			position = "Мастер";
+		else if(pos_id == operator_id){
+			position = "Менеджер";
+		}
 	}
 
 	/**

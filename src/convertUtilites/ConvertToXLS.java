@@ -23,23 +23,24 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import entites.GeneralEntity;
+import entities.Request;
 
 public class ConvertToXLS {
 
-	void saveFile(List<GeneralEntity> list, String name) throws FileNotFoundException, IOException {
+	void saveFile(List<Request> list, String name) throws FileNotFoundException, IOException {
 
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		HSSFSheet sheet = workbook.createSheet("GeneralEntitys");
 		Map<String, Object[]> data = new HashMap<String, Object[]>();
 		for (int i=0;i<list.size();i++){
-			data.put("i+1", new Object[] {list.get(i).getIncomeDate(), 
-					list.get(i).getFullNameClient(), 
+			data.put("i+1", new Object[] {list.get(i).getIncomeDateRaw(), 
+					list.get(i).getClientFullName(), 
 					list.get(i).getAddress(),
-					list.get(i).getTypeService(),
-					list.get(i).getFullNameEmployee(),
-					list.get(i).getServiceDate(),
-					list.get(i).getClosedDate(),
+					list.get(i).getTypeServices(),
+					list.get(i).getOperatorInitials(),
+					list.get(i).getServiceDateRaw(),
+					list.get(i).getMasterInitials(),
+					list.get(i).getClosedDateRaw(),
 					list.get(i).getComment()});
 		}
 		//Map<String, Object[]> data = new HashMap<String, Object[]>();
@@ -83,14 +84,14 @@ public class ConvertToXLS {
 
 	public static void main(String[] argv) throws FileNotFoundException, IOException {
 		ConvertToXLS xls = new ConvertToXLS();
-		GeneralEntity req = new GeneralEntity();
-		List<GeneralEntity> list = new ArrayList<GeneralEntity>();
-		//req.setAddress("abc");
-		//list.add(req);
-		//req.setAddress("123");
-		//list.add(req);
-		//req.setAddress("ghj");
-		//list.add(req);
+		Request req = new Request();
+		List<Request> list = new ArrayList<Request>();
+		req.setAddress("abc");
+		list.add(req);
+		req.setAddress("123");
+		list.add(req);
+		req.setAddress("ghj");
+		list.add(req);
 
 		xls.saveFile(list, "res.xls");
 		System.out.println("Writing on XLS file Finished!\n");
