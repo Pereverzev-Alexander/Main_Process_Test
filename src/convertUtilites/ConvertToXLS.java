@@ -42,7 +42,7 @@ public class ConvertToXLS {
 		
 		Map<String, Object[]> data = new HashMap<String, Object[]>();
 		//create heading
-		data.put(Integer.toString(1), new Object[] {"Дата регистрации заявки",
+		data.put(Integer.toString(0), new Object[] {"Дата регистрации заявки",
 				"ФИО клиента",
 				"Адрес клиента",
 				"Тип подключаемой услуги (Интернет/ТВ/Телефон)",
@@ -54,7 +54,7 @@ public class ConvertToXLS {
 		
 		//filling
 		for (int i=0;i<list.size();i++){
-			data.put(Integer.toString(i+2), new Object[] {ConvertUnixTimestampToString(list.get(i).getIncomeDateRaw()), 
+			data.put(Integer.toString(i+1), new Object[] {ConvertUnixTimestampToString(list.get(i).getIncomeDateRaw()), 
 					list.get(i).getClientFullName(), 
 					list.get(i).getAddress(),
 					list.get(i).getTypeServices(),

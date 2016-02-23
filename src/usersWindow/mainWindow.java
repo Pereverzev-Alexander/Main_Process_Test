@@ -42,6 +42,7 @@ import dbUtilities.DbDriver;
 import entities.Request;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -350,10 +351,12 @@ public class mainWindow {
 						@Override
 						public void widgetSelected(SelectionEvent e) {
 							System.out.println(dateTime_Right.toString());
+							System.out.println(ConvertDateTimeToUnixTimestamp(dateTime_Right));
 							System.out.println("d " + dateTime_Right.getDay() + "m " + dateTime_Right.getMonth() + "Y " + dateTime_Right.getYear());
 							if(!connectionEstablished)
 								return;
 							try{
+								listReq = new ArrayList<Request>();
 								listReq = driver.getRequestsBetween(ConvertDateTimeToUnixTimestamp(dateTime_Left),
 										ConvertDateTimeToUnixTimestamp(dateTime_Right));
 								ConvertToXLS xls = new ConvertToXLS();
@@ -635,7 +638,7 @@ public class mainWindow {
 	
 	private long ConvertDateTimeToUnixTimestamp(DateTime time){
 		Calendar cal = Calendar.getInstance();
-        cal.set(time.getYear(),time.getMonth()+1,time.getDay());
+        cal.set(time.getYear(),time.getMonth(),time.getDay());
 		return cal.getTime().getTime()/(long)1000;
 	}
 	
