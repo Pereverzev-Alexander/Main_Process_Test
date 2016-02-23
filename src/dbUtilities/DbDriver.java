@@ -117,6 +117,23 @@ public class DbDriver {
 		
 	}
 	
+	public List<String> getServices() throws SQLException{
+		if (connection == null)
+		{
+			return null;
+		}
+		String query = "SELECT name from services"+";";
+		result = statement.executeQuery(query);
+		List<String> res = new ArrayList<String>();
+		while (result.next())
+		{
+			String name = result.getString(1);
+			res.add(name);
+		}
+		return res;	
+		
+	}
+	
 	/*
 	 * Get list of all masters (surname and initials) from DB
 	 */

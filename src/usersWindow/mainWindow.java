@@ -54,11 +54,11 @@ public class mainWindow {
 	private Text text_1;
 	private String password;
 	private String login;
-	private Text text_2;
-	private Text text_3;
-	private Text text_4;
-	private Text text_5;
-	private Text text_6;
+	private Text text_clientSecondName;
+	private Text text_address;
+	private Text text_clientName;
+	private Text text_clientSurName;
+	private Text text_comment;
 	private Table table;
 	private int SelectRow;
 	private DbDriver driver;
@@ -66,6 +66,15 @@ public class mainWindow {
 	private  List<Request> listReq =  null;
 	private DateTime dateTime_Right;
 	private DateTime dateTime_Left;
+	private ComboViewer comboViewer;
+	private ComboViewer comboViewer_1;
+	private ComboViewer comboViewer_2;
+	private Combo combo_services;
+	private DateTime dateTime_income;
+	private Combo combo_operators;
+	private DateTime dateTime_close;
+	private DateTime dateTime_services;
+	private Combo combo_master;
 
 
 	/**
@@ -196,6 +205,14 @@ public class mainWindow {
 						if( !connectionEstablished)
 						{
 							System.out.println("Fail connect!");
+						}else{
+							try{
+								comboViewer.add(driver.getServices().toArray());
+								comboViewer_1.add(driver.getOperatorsInitialsList().toArray());
+								comboViewer_2.add(driver.getMastersInitialsList().toArray());
+							}catch(SQLException exp){
+								exp.printStackTrace();
+							}
 						}
 					}
 				});
@@ -309,22 +326,35 @@ public class mainWindow {
 					
 					
 					
-					ComboViewer comboViewer = new ComboViewer(composite, SWT.NONE);
-					Combo combo = comboViewer.getCombo();
-					combo.setBounds(359, 86, 96, 23);
+					comboViewer = new ComboViewer(composite, SWT.NONE);
+					combo_services = comboViewer.getCombo();
+					combo_services.setBounds(290, 140, 115, 21);
 					
 					Button btnNewButton_1 = new Button(composite, SWT.NONE);
+					btnNewButton_1.setEnabled(false);
 					btnNewButton_1.setBackground(SWTResourceManager.getColor(65, 105, 225));
 					btnNewButton_1.setText("Добавить заявку");
 					btnNewButton_1.addSelectionListener(new SelectionAdapter() {
 						@Override
 						public void widgetSelected(SelectionEvent e) {
+							/*driver.addRequest(text_clientName.getText(),
+									text_clientSecondName.getText(),
+									text_clientSurName.getText(),
+									text_address.getText(),
+									combo_services.getText(),
+									combo_master.getText(),
+									combo_operators.getText(),
+									ConvertDateTimeToUnixTimestamp(dateTime_income),
+									ConvertDateTimeToUnixTimestamp(dateTime_close),
+									ConvertDateTimeToUnixTimestamp(dateTime_services),
+									text_comment.getText());*/
 						}
 					});
 					btnNewButton_1.setToolTipText("\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443");
 					btnNewButton_1.setBounds(155, 22, 104, 30);
 					
 					Button btnNewButton_2 = new Button(composite, SWT.NONE);
+					btnNewButton_2.setEnabled(false);
 					btnNewButton_2.setToolTipText("\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u0432\u043E\u0430\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0438");
 					btnNewButton_2.addSelectionListener(new SelectionAdapter() {
 						@Override
@@ -337,6 +367,7 @@ public class mainWindow {
 					btnNewButton_2.setText("\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C");
 					
 					Button btnNewButton_3 = new Button(composite, SWT.NONE);
+					btnNewButton_3.setEnabled(false);
 					btnNewButton_3.setBackground(SWTResourceManager.getColor(65, 105, 225));
 					btnNewButton_3.setToolTipText("\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0432\u043D\u0435\u0441\u0451\u043D\u043D\u044B\u0435 \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F");
 					btnNewButton_3.setBounds(436, 22, 133, 30);
@@ -367,73 +398,73 @@ public class mainWindow {
 						}
 					});
 					
-					DateTime dateTime = new DateTime(composite, SWT.BORDER);
-					dateTime.setBounds(42, 86, 76, 24);
+					dateTime_income = new DateTime(composite, SWT.BORDER);
+					dateTime_income.setBounds(26, 83, 76, 24);
 					
-					text_2 = new Text(composite, SWT.BORDER);
-					text_2.setBounds(149, 140, 96, 21);
+					text_clientSecondName = new Text(composite, SWT.BORDER);
+					text_clientSecondName.setBounds(155, 140, 96, 21);
 					
-					text_3 = new Text(composite, SWT.BORDER);
-					text_3.setBounds(264, 86, 76, 21);
+					text_address = new Text(composite, SWT.BORDER);
+					text_address.setBounds(290, 83, 115, 21);
 					
-					ComboViewer comboViewer_1 = new ComboViewer(composite, SWT.NONE);
-					Combo combo_1 = comboViewer_1.getCombo();
-					combo_1.setBounds(42, 203, 91, 23);
+					comboViewer_1 = new ComboViewer(composite, SWT.NONE);
+					combo_operators = comboViewer_1.getCombo();
+					combo_operators.setBounds(26, 140, 91, 23);
 					
-					text_4 = new Text(composite, SWT.BORDER);
-					text_4.setBounds(149, 86, 96, 21);
+					text_clientName = new Text(composite, SWT.BORDER);
+					text_clientName.setBounds(155, 86, 96, 21);
 					
-					text_5 = new Text(composite, SWT.BORDER);
-					text_5.setBounds(149, 113, 96, 21);
+					text_clientSurName = new Text(composite, SWT.BORDER);
+					text_clientSurName.setBounds(155, 113, 96, 21);
 					
-					DateTime dateTime_1 = new DateTime(composite, SWT.BORDER);
-					dateTime_1.setBounds(42, 262, 76, 24);
+					dateTime_close = new DateTime(composite, SWT.BORDER);
+					dateTime_close.setBounds(26, 188, 76, 24);
 					
-					text_6 = new Text(composite, SWT.BORDER);
-					text_6.setBounds(174, 265, 76, 21);
+					text_comment = new Text(composite, SWT.BORDER);
+					text_comment.setBounds(26, 239, 225, 21);
 					
 					Label label_1 = new Label(composite, SWT.NONE);
-					label_1.setBounds(42, 65, 76, 15);
+					label_1.setBounds(26, 65, 76, 15);
 					label_1.setText("\u0414\u0430\u0442\u0430 \u0437\u0430\u044F\u0432\u043A\u0438");
 					
 					Label label_2 = new Label(composite, SWT.NONE);
-					label_2.setBounds(150, 65, 75, 15);
+					label_2.setBounds(155, 65, 75, 15);
 					label_2.setText("ФИО Клиента");
 					
 					Label label_3 = new Label(composite, SWT.NONE);
-					label_3.setBounds(266, 65, 55, 15);
+					label_3.setBounds(290, 65, 55, 15);
 					label_3.setText("\u0410\u0434\u0440\u0435\u0441");
 					
 					Label label_4 = new Label(composite, SWT.NONE);
-					label_4.setBounds(359, 65, 55, 15);
+					label_4.setBounds(290, 116, 55, 15);
 					label_4.setText("\u0423\u0441\u043B\u0443\u0433\u0430");
 					
 					Label label_5 = new Label(composite, SWT.NONE);
-					label_5.setBounds(42, 182, 96, 15);
+					label_5.setBounds(26, 116, 96, 15);
 					label_5.setText("\u0424\u0418\u041E \u043E\u043F\u0435\u0440\u0430\u0442\u043E\u0440\u0430");
 					
-					DateTime dateTime_2 = new DateTime(composite, SWT.BORDER);
-					dateTime_2.setBounds(149, 203, 76, 24);
+					dateTime_services = new DateTime(composite, SWT.BORDER);
+					dateTime_services.setBounds(155, 188, 76, 24);
 					
 					Label label_6 = new Label(composite, SWT.NONE);
-					label_6.setBounds(149, 182, 191, 23);
+					label_6.setBounds(155, 167, 191, 15);
 					label_6.setText("\u041F\u043B\u0430\u043D\u0438\u0440\u0443\u0435\u043C\u0430\u044F \u0434\u0430\u0442\u0430 \u0432\u044B\u0435\u0437\u0434\u0430 \u043C\u0430\u0441\u0442\u0435\u0440\u0430");
 					
 					Label label_7 = new Label(composite, SWT.NONE);
-					label_7.setBounds(42, 241, 126, 15);
+					label_7.setBounds(26, 167, 126, 15);
 					label_7.setText("\u0414\u0430\u0442\u0430 \u0437\u0430\u043A\u0440\u044B\u0442\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u0430");
 					
 					Label lbll = new Label(composite, SWT.NONE);
-					lbll.setBounds(174, 241, 96, 15);
+					lbll.setBounds(26, 218, 96, 15);
 					lbll.setText("\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439");
 					
-					ComboViewer comboViewer_2 = new ComboViewer(composite, SWT.NONE);
-					Combo combo_2 = comboViewer_2.getCombo();
-					combo_2.setBounds(346, 203, 91, 21);
+					comboViewer_2 = new ComboViewer(composite, SWT.NONE);
+					combo_master = comboViewer_2.getCombo();
+					combo_master.setBounds(290, 239, 115, 21);
 					
 					Label label_8 = new Label(composite, SWT.NONE);
 					label_8.setText("ФИО мастера");
-					label_8.setBounds(346, 182, 96, 15);
+					label_8.setBounds(290, 218, 96, 15);
 					
 					dateTime_Left = new DateTime(composite, SWT.BORDER);
 					dateTime_Left.setBounds(42, 363, 77, 23);
@@ -580,7 +611,7 @@ public class mainWindow {
 					
 					
 					
-					comboViewer.add(data);
+					
 		
 			
 					

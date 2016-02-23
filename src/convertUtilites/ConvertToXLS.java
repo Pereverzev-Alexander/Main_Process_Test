@@ -117,7 +117,7 @@ public class ConvertToXLS {
 		mydate.setTimeInMillis(time*1000);
 		return mydate.get(Calendar.DAY_OF_MONTH)+"."+Integer.toString(mydate.get(Calendar.MONTH)+1) + "."+mydate.get(Calendar.YEAR);
 	}
-
+/*
 	public static void main(String[] argv) throws FileNotFoundException, IOException {
 		ConvertToXLS xls = new ConvertToXLS();
 		Request req = new Request();
@@ -132,5 +132,5 @@ public class ConvertToXLS {
 
 		xls.saveFile(list, "res.xls");
 		System.out.println("Writing on XLS file Finished!\n");
-	}
+	}*/
 }
