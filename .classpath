@@ -5,5 +5,19 @@
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.38-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/poi-3.13.jar"/>
+	<classpathentry kind="lib" path="lib/swt.jar"/>
+	<classpathentry kind="lib" path="org.pushingpixels.trident_1.2.0.v20100204-1500.jar" sourcepath="org.pushingpixels.trident.source_1.2.0.v20100204-1500.jar"/>
+	<classpathentry kind="lib" path="org.eclipse.e4.xwt_0.9.1.SNAPSHOT.jar" sourcepath="org.eclipse.e4.xwt.source_0.9.1.SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="org.eclipse.e4.xwt.forms_0.9.1.SNAPSHOT.jar" sourcepath="org.eclipse.e4.xwt.forms.source_0.9.1.SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="D:/Setup/eclipse/plugins/org.eclipse.core.databinding_1.5.0.v20150422-0725.jar" sourcepath="D:/Setup/eclipse/plugins/org.eclipse.core.databinding_1.5.0.v20150422-0725.jar"/>
+	<classpathentry kind="lib" path="D:/Setup/eclipse/plugins/org.eclipse.core.databinding.observable_1.5.0.v20150422-0725.jar" sourcepath="D:/Setup/eclipse/plugins/org.eclipse.core.databinding.observable_1.5.0.v20150422-0725.jar"/>
+	<classpathentry kind="lib" path="D:/Setup/eclipse/plugins/org.eclipse.jface.databinding_1.7.0.v20150406-2148.jar" sourcepath="D:/Setup/eclipse/plugins/org.eclipse.jface.databinding_1.7.0.v20150406-2148.jar"/>
+	<classpathentry kind="lib" path="D:/Setup/eclipse/plugins/org.eclipse.core.databinding.beans_1.3.0.v20150422-0725.jar" sourcepath="D:/Setup/eclipse/plugins/org.eclipse.core.databinding.beans_1.3.0.v20150422-0725.jar"/>
+	<classpathentry kind="lib" path="D:/Setup/eclipse/plugins/org.eclipse.core.databinding.property_1.5.0.v20150422-0725.jar" sourcepath="D:/Setup/eclipse/plugins/org.eclipse.core.databinding.property_1.5.0.v20150422-0725.jar"/>
+	<classpathentry kind="lib" path="D:/Setup/eclipse/plugins/org.eclipse.equinox.common_3.7.0.v20150402-1709.jar" sourcepath="D:/Setup/eclipse/plugins/org.eclipse.equinox.common_3.7.0.v20150402-1709.jar"/>
+	<classpathentry kind="lib" path="D:/Setup/eclipse/plugins/com.ibm.icu_54.1.1.v201501272100.jar" sourcepath="D:/Setup/eclipse/plugins/com.ibm.icu_54.1.1.v201501272100.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jface_3.11.0.v20150602-1400.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jface.text_3.10.0.v20150603-1752.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.commands_3.7.0.v20150422-0725.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
